@@ -1,0 +1,13 @@
+#list-games {
+  text-align: center;
+}
+
+#list-games h2 {
+  color: #414040;
+}
+
+#list-games ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
