@@ -83,8 +83,13 @@ app.delete('/games/:id', async (req, res) => {
   }
 });
 
+const MONGO_USER = process.env.MONGO_USER || 'max';
+const MONGO_PASSWORD = process.env.MONGO_PASSWORD || 'secret';
+const MONGO_HOST = process.env.MONGO_HOST || 'mongodb';
+const MONGO_DB = process.env.MONGO_DB || 'list-games';
+
 mongoose.connect(
-  `mongodb://max:secret@mongodb:27017/list-games?authSource=admin`,
+  `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:27017/${MONGO_DB}?authSource=admin`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

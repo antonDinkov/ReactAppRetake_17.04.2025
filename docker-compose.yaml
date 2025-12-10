@@ -1,0 +1,42 @@
+services:
+  backend:
+    image: antondinkov/backend
+    container_name: backend
+    volumes:
+      - logs:/app/logs
+      - modules:/app/node_modules
+    networks:
+      - my-network
+    ports:
+     - 80:80
+    environment:
+      - MONGO_USER=max
+      - MONGO_PASSWORD=secret
+      - MONGO_HOST=mongodb
+      - MONGO_DB=list-games
+  mongo:
+    image: mongo
+    container_name: mongodb
+    volumes:
+    - data:/data/db
+    networks:
+    - my-network
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=max
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+      - MONGO_INITDB_DATABASE=list-games
+  frontend:
+    image: antondinkov/frontend
+    container_name: frontend
+    volumes:
+      - ./frontend/src:/app/src
+    networks:
+      - my-network
+    ports:
+      - 3000:3000
+networks:
+  my-network:
+volumes:
+  data:
+  logs:
+  modules:
